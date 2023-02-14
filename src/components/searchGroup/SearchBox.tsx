@@ -1,12 +1,13 @@
 import {
   Button,
   FormControl,
-  FormHelperText,
   FormLabel,
   Input,
   Switch,
 } from "@chakra-ui/react";
-import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
+import React, { useState } from "react";
+import useAppStore from "../../app/appState";
+import { getSongs } from "../../services";
 
 // import { Container } from './styles';
 
@@ -14,14 +15,17 @@ const SearchBox: React.FC = () => {
   const [isKaraoke, setIsKaraoke] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [rowLayout, setRowLayout] = useState(false);
+  const updatesSearchResult = useAppStore((state) => state.updatesSearchResult);
 
   const submit = () => {
-    console.log(isKaraoke);
-    console.log(searchValue);
+    if (!searchValue) return;
+    getSongs(searchValue, isKaraoke).then((res) => {
+      updatesSearchResult(res.data);
+    });
   };
 
   return (
-    <div className="sticky top-0 z-20">
+    <div className="z-20 flex-none">
       <FormControl className="flex w-full bg-white p-2 gap-3 items-center">
         <Input
           value={searchValue}
@@ -44,9 +48,9 @@ const SearchBox: React.FC = () => {
         <Button onClick={submit}>Search</Button>
       </FormControl>
 
-      <div className="text-white flex justify-between items-center mb-3 bg-black px-3 py-2">
+      <div className="text-white flex justify-between items-center bg-black px-3 py-2">
         Kết quả
-        <div className="flex items-center gap-2">
+        <div className="items-center gap-2 lg:flex hidden">
           Row
           <Switch
             isChecked={rowLayout}

@@ -6,7 +6,7 @@ import SearchBox from "./SearchBox";
 
 const SearchGroup: React.FC = () => {
   return (
-    <div className="grow overflow-y-auto border-r-indigo-100 border-r relative">
+    <div className="w-full border-r-indigo-100 border-r relative lg:flex flex-col hidden">
       <SearchBox />
       <ResultPanel />
     </div>

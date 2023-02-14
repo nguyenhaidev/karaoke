@@ -4,7 +4,7 @@ import React from "react";
 
 const MainScreen: React.FC = () => {
   return (
-    <div className="w-full h-[400px] bg-white flex-none">
+    <div className="w-full h-[250px] lg:h-[400px] bg-white flex-none">
       <iframe
         width="100%"
         height="100%"
