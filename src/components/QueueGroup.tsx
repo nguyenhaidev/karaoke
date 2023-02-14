@@ -13,7 +13,13 @@ const Queue: React.FC = () => {
       queue.map((e) => (
         <>
           <div className="w-full px-1 py-2 ">
-            <ResultItem title="abc" author="xbvas" key={e} layout="row" />
+            <ResultItem
+              title="abc"
+              author="xbvas"
+              key={e}
+              layout="row"
+              image={""}
+            />
           </div>
         </>
       )),
